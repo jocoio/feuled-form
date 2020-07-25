@@ -4,6 +4,7 @@
   <!-- JS functionality -->
   <script defer src="./cart.js"></script>
 </head>
+
 <body>
   <!-- Nav -->
   <div id="nav">
@@ -22,8 +23,8 @@
       <div>Home → Checkout</div>
     </div>
     <!-- Table -->
-    <table id="table">
-    </table>
+    <div id="table">
+    </div>
     <!-- Footer -->
     <div id="footer">
       <!-- Additional comments -->
@@ -34,12 +35,28 @@
       <!-- Delivery info -->
       <div>
         <div>Delivery info</div>
-        <div>All orders will be sent by Special Delivery, which will be insured and will need to be signed for. Allow 4-6 weeks for delivery.</div>
+        <div>All orders will be sent by Special Delivery, which will be insured and will need to be signed for. Allow
+          4-6 weeks for delivery.</div>
       </div>
       <!-- Checkout -->
       <div>
         <div>Order total</div>
-        <button>Checkout</button>
+        <!-- Prices -->
+        <table id="prices">
+          <tr>
+            <td>Sub Total</td>
+            <td id="sub">$0</td>
+          </tr>
+          <tr>
+            <td>Tax</td>
+            <td id="tax">$0</td>
+          </tr>
+          <tr>
+            <td>Total</td>
+            <td id="total">$0</td>
+          </tr>
+        </table>
+        <button id="Checkout">Checkout</button>
       </div>
     </div>
   </div>
