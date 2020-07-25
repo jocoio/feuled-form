@@ -42,6 +42,10 @@ table {
   height: 100px;
 }
 
+table img {
+  border-radius: 6px;
+}
+
 #footer {
   display: flex;
   justify-content: space-between;
