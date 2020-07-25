@@ -41,7 +41,7 @@ function populateTable(tID, cartArr){
   for (i = 0; i < cartArr.length; i++) {
     let itm = cartArr[i];
     tHTML += "<tr>";
-    tHTML += "<td><img src='" + window.location.origin + "/assets/" + itm.id + ".png'/></td>";
+    tHTML += "<td><img src='" + window.location.href + "/assets/" + itm.id + ".png'/></td>";
     tHTML += "<td><div>" + itm.name + "</div><div>" + itm.id + "</div></td>";
     tHTML += "<td>" + itm.price + "</td>";
     tHTML += "<td>" + itm.quantity + "</td>";
