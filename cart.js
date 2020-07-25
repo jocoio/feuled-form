@@ -26,7 +26,7 @@ var cart = [
 // carrArr (Array): array containing a user's cart items
 function populateTable(tID, cartArr){
 
-  var tHTML = "";
+  let tHTML = "";
 
   // Headers
   tHTML += "<tr>";
@@ -38,17 +38,14 @@ function populateTable(tID, cartArr){
   tHTML += "</tr>";
 
   // Rows
-  for (var item in cartArr) {
+  for (i = 0; i < cartArr.length; i++) {
+    let itm = cartArr[i];
     tHTML += "<tr>";
-    var dataObj = cartArr[item];
-    tHTML += "<td><img src='../assets/"+ dataObj.id + ".png'/></td>";
-    tHTML += "<td><div>" + dataObj.name + "</div><div>" + dataObj.id + "</div></td>";
-    tHTML += "<td>" + dataObj.price + "</td>";
-    tHTML += "<td>" + dataObj.quantity + "</td>";
+    tHTML += "<td><img src='" + window.location.origin + "/assets/" + itm.id + ".png'/></td>";
+    tHTML += "<td><div>" + itm.name + "</div><div>" + itm.id + "</div></td>";
+    tHTML += "<td>" + itm.price + "</td>";
+    tHTML += "<td>" + itm.quantity + "</td>";
     tHTML += "<td><button>x</button></td>";
-    // for (var eachValue in dataObj){
-    //   tHTML += "<td>" + dataObj[eachValue] + "</td>";
-    // }
     tHTML += "</tr>";
   }
 
