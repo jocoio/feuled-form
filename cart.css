@@ -1,17 +1,62 @@
-/* Resetting */
+/* ----- Resetting ----- */
+
 * {
   margin: 0;
   text-align: left;
 }
 
+
+/* ----- Common elements ----- */
+
 body {
-  font-family: -apple-system, BlinkMacSystemFont, sans-serif;
   color: #FFFFFF;
   background-color: #1B1B1B;
 }
 
+input {
+  padding: 15px;
+  background-color: #000000;
+  color: #FFFFFF;
+  border: none;
+  border-radius: 6px;
+}
 
-/* Nav bar */
+/* Remover spinner on number inputs */ 
+
+/* Chrome, Safari, Edge, Opera */
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+/* Firefox */
+input[type=number] {
+  -moz-appearance: textfield;
+}
+
+
+/* ----- Common stylings ----- */ 
+
+.btn_pri {
+  padding: 20px 30px;
+  border: none;
+  border-radius: 6px;
+  font-size: 18px;
+  font-weight: 700;
+  background-color: #AE0000;
+  color: #FFFFFF;
+}
+
+.bg_black {
+  background-color: #000000;
+}
+
+.opac_md {
+  opacity: 0.6;
+}
+
+
+/* ----- Nav bar ----- */
 
 #nav {
   height: 70px;
@@ -22,8 +67,48 @@ body {
   background-color: #AE0000;
 }
 
+#logo {
+  display: flex;
+}
 
-/* Cart */ 
+#logo > h3 {
+  font-size: 18px;
+  letter-spacing: 0.09rem;
+}
+
+#logo > h3:first-of-type {
+  font-weight: 300;
+}
+
+#cartcount {
+  display: flex;
+  align-items: center;
+}
+
+#count {
+  margin-left: 5px;
+  padding: 3px 7px;
+  border-radius: 30px;
+  background-color: #FFFFFF;
+  color: #000000;
+  font-weight: 700;
+}
+
+
+/* ----- Header ----- */
+
+#header {
+  display: flex;
+  align-items: center;
+}
+
+#crumbs {
+  padding: 16px 14px;
+  border-radius: 6px;
+}
+
+
+/* ----- Cart ----- */ 
 
 #cart {
   padding: 73px 46px;
@@ -34,21 +119,58 @@ body {
   justify-content: space-between;
 }
 
-/* Table */
+/* ----- Table ----- */
 
-#table {
+#inventory > div {
+  text-align: center;
+  padding: 50px;
+}
+
+#inventory {
   padding: 72px 0px;
+}
+
+#inventory th{
+  font-weight: normal;
+  padding: 15px 0;
+}
+
+#inventory tr:nth-child(odd), #inventory>div:nth-child(odd) {
+  background-color: #000000;
+}
+
+#inventory input {
+  min-width: 50px;
+  max-width: 75px;
+  text-align: center;
+}
+
+#inventory table {
+  border-spacing: 0 1em;
+}
+
+#inventory img {
+  border-radius: 6px;
+}
+
+.update {
+  display:inline-block;
+  margin-left: 10px;
+  cursor: pointer;
 }
 
 table {
   width: 100%;
 }
 
-table img {
-  border-radius: 6px;
-}
+/* ----- FOOTER ----- */
 
 #footer {
   display: flex;
+  flex-wrap: wrap;
   justify-content: space-between;
+}
+
+#footer > div {
+  flex: 1;
 }

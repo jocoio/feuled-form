@@ -60,10 +60,18 @@ function populateInventory() {
     for (i = 0; i < cart.length; i++) {
       let itm = cart[i];
       tHTML += "<tr>";
+      // Image
       tHTML += "<td><img src='" + window.location.href + "/assets/" + itm.id + ".png'/></td>";
-      tHTML += "<td><div>" + itm.name + "</div><div>" + itm.id + "</div></td>";
-      tHTML += "<td>" + dollarizer.format(itm.price) + "</td>";
-      tHTML += "<td><input id='quan_"+ i + "' type='number' min='1' value=" + itm.quantity + "></input><button onclick='updateQuan(" + i + ")'>update</button></td>";
+      // Name
+      tHTML += "<td><h2>" + itm.name + "</h2><div class='opac_md'>" + itm.id + "</div></td>";
+      // Price
+      tHTML += "<td><h2>" + dollarizer.format(itm.price) + "</h2></td>";
+      // Quantity
+      tHTML += "<td>";
+      tHTML += "<input id='quan_"+ i + "' type='number' min='1' value=" + itm.quantity + "></input>";
+      tHTML += "<p class='update' onclick='updateQuan(" + i + ")'>Update</p>";
+      tHTML += "</td>";
+      // Remove
       tHTML += "<td><button onclick='removeItem(" + i + ")'>x</button></td>";
       tHTML += "</tr>";
     }
@@ -72,7 +80,7 @@ function populateInventory() {
   }
 
   // Update HTML
-  document.getElementById("table").innerHTML = tHTML;
+  document.getElementById("inventory").innerHTML = tHTML;
 }
 
 // Populates prices table with subtotal, tax, total
@@ -89,7 +97,7 @@ function populatePrices() {
 
 // Updates an item's quantity
 // idx (Number): index of the item in the cart
-// TODO: Sanity checking for non-zero
+// TODO: Sanity checking for anything less than 1
 function updateQuan(idx) {
   cart[idx].quantity = document.getElementById('quan_' + idx).value;
   populatePrices();

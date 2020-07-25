@@ -1,0 +1,49 @@
+/* 
+Sizes & their use:
+14: update button, continue shopping (secondary text links) = p
+16: cart count, crumbs, table headings, id, additional comments, delivery info, check = *
+18: logo, checkout button = will handle in custom styling
+20: item name, price, quantity = h2
+28: your cart = h1
+*/ 
+
+/* -----SF FONT FAMILY ----- */
+/* TODO: Host locally, or find another slightly less illegal approach for v1.1 */ 
+
+/* Light */
+@font-face {
+  font-family: "SF Text";
+  font-weight: 300;
+  src: url("https://sf.abarba.me/SF-UI-Display-Light.otf");
+}
+
+/* Bold */
+@font-face {
+  font-family: "SF Text";
+  font-weight: 700;
+  src: url("https://sf.abarba.me/SF-UI-Display-Bold.otf");
+}
+
+* {
+  font-family: "SF Text", -apple-system, BlinkMacSystemFont, sans-serif;
+  letter-spacing: 0.05rem;
+}
+
+h1 {
+  font-size: 28px;
+  font-weight: normal;
+}
+
+h2 {
+  font-size: 20px;
+  font-weight: normal;
+}
+
+* {
+  font-size: 16px;
+}
+
+p {
+  font-size: 14px;
+  text-decoration: underline;
+}

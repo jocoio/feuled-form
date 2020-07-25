@@ -1,7 +1,8 @@
 <head>
   <!-- Styling -->
   <link rel="stylesheet" type="text/css" href="./cart.css">
-  <!-- JS functionality -->
+  <link rel="stylesheet" type="text/css" href="./type.css">
+  <!-- Cart logic -->
   <script defer src="./cart.js"></script>
 </head>
 
@@ -9,21 +10,27 @@
   <!-- Nav -->
   <div id="nav">
     <!-- Logo -->
-    <div>ORDERFORM</div>
+    <div id="logo">
+      <h3>ORDER</h3>
+      <h3>FORM</h3>
+    </div>
     <!-- Cart count -->
-    <div>Cart 3</div>
+    <div id="cartcount">
+      <div>Cart</div>
+      <div id="count">0</div>
+    </div>
   </div>
   <!-- Cart -->
   <div id="cart">
     <!-- Header -->
     <div id="header">
       <!-- Title -->
-      <div>Your cart</div>
+      <h1>Your cart</h1>
       <!-- Breadcrumbs -->
-      <div>Home → Checkout</div>
+      <div id="crumbs" class="bg_black">Home → Checkout</div>
     </div>
-    <!-- Table -->
-    <div id="table">
+    <!-- Inventory -->
+    <div id="inventory">
     </div>
     <!-- Footer -->
     <div id="footer">
@@ -35,8 +42,10 @@
       <!-- Delivery info -->
       <div>
         <div>Delivery info</div>
-        <div>All orders will be sent by Special Delivery, which will be insured and will need to be signed for. Allow
-          4-6 weeks for delivery.</div>
+        <div class="opac_md">
+          All orders will be sent by Special Delivery, which will be insured and
+          will need to be signed for. Allow 4-6 weeks for delivery.
+        </div>
       </div>
       <!-- Checkout -->
       <div>
@@ -56,7 +65,8 @@
             <td id="total">$0</td>
           </tr>
         </table>
-        <button id="Checkout">Checkout</button>
+        <button id="Checkout" class="btn_pri">Checkout</button>
+        <p>or Continue Shopping</p>
       </div>
     </div>
   </div>
