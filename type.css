@@ -47,3 +47,8 @@ p {
   font-size: 14px;
   text-decoration: underline;
 }
+
+a, a:visited, a:hover, a:active {
+  text-decoration: none;
+  color: #FFFFFF;
+}
