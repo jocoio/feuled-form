@@ -35,12 +35,12 @@
     <!-- Footer -->
     <div id="footer">
       <!-- Additional comments -->
-      <div>
+      <div id="comments">
         <div>Additional comments</div>
-        <input type="text"></input>
+        <textarea id="comment" name="paragraph_text" style="resize: none;" cols="50" rows="10"></textarea>
       </div>
       <!-- Delivery info -->
-      <div>
+      <div id="delivery">
         <div>Delivery info</div>
         <div class="opac_md">
           All orders will be sent by Special Delivery, which will be insured and
@@ -49,8 +49,6 @@
       </div>
       <!-- Checkout -->
       <div>
-        <div>Order total</div>
-        <!-- Prices -->
         <table id="prices">
           <tr>
             <td>Sub Total</td>
@@ -65,7 +63,7 @@
             <td id="total">$0</td>
           </tr>
         </table>
-        <button id="Checkout" class="btn_pri">Checkout</button>
+        <button id="checkout" class="btn_pri" onclick="submitCheckout()">Checkout</button>
         <p>or Continue Shopping</p>
       </div>
     </div>

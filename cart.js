@@ -30,12 +30,12 @@ var cart = [
 ]
 
 
-// ----- TABLE POPULATION ----- //
+// ----- DATA UPDATES ----- //
 
-// Creates and populates inventory <table> with cart data from an arrray
-// tID (Number): id of the table that will be populated
+// Creates and updates inventory <table> with cart data from an arrray
+// tID (Number): id of the table that will be updated
 // carrArr (Array): array containing a user's cart items
-function populateInventory() {
+function updateInventory() {
 
   let tHTML = "";
 
@@ -72,7 +72,7 @@ function populateInventory() {
       tHTML += "<p class='update' onclick='updateQuan(" + i + ")'>Update</p>";
       tHTML += "</td>";
       // Remove
-      tHTML += "<td><button onclick='removeItem(" + i + ")'>x</button></td>";
+      tHTML += "<td><img src='" + window.location.href + "/assets/icons/x.svg' class='close' onclick='removeItem(" + i + ")'/></td>";
       tHTML += "</tr>";
     }
 
@@ -83,13 +83,24 @@ function populateInventory() {
   document.getElementById("inventory").innerHTML = tHTML;
 }
 
-// Populates prices table with subtotal, tax, total
+// updates prices table with subtotal, tax, total
 // carrArr (Array): array containing a user's cart items
-function populatePrices() {
+function updatePrices() {
   let sub = calculateTotal();
   document.getElementById("sub").innerHTML = dollarizer.format(sub);
   document.getElementById("tax").innerHTML = dollarizer.format(TAX);
   document.getElementById("total").innerHTML = dollarizer.format(sub * (1 + TAX / 100));
+}
+
+// updates count in nav bar to reflect number of items
+function updateCount() {
+  document.getElementById("count").innerHTML = cart.length;
+}
+
+function updateButton() {
+  if (cart.length === 0) {
+    document.getElementById("checkout").disabled = true;
+  }
 }
 
 
@@ -100,7 +111,7 @@ function populatePrices() {
 // TODO: Sanity checking for anything less than 1
 function updateQuan(idx) {
   cart[idx].quantity = document.getElementById('quan_' + idx).value;
-  populatePrices();
+  updatePrices();
 }
 
 // Removes an item from user's cart
@@ -108,10 +119,40 @@ function updateQuan(idx) {
 // TODO: An 'are you sure' popup?
 function removeItem(idx) {
   cart.splice(idx, 1);
-  populateInventory();
-  populatePrices();
+  updateInventory();
+  updatePrices();
+  updateCount();
+  updateButton();
 }
 
+function submitCheckout() {
+  let msg = "";
+
+  msg += "Cart:";
+  msg += "\n";
+
+  for (let i = 0; i < cart.length; i++) {
+    msg += cart[i].name + " x" + cart[i].quantity;
+    msg += " ..... ";
+    msg += dollarizer.format(cart[i].price * cart[i].quantity);
+    msg += "\n"
+  }
+
+  msg += "\n";
+
+  let addcomm  = document.getElementById("comment").value;
+  if (addcomm !== "") {
+    msg += "Additional comments:" ;
+    msg += "\n";
+    msg += addcomm;
+    msg += "\n\n"
+  }
+
+  msg += "Total: " + dollarizer.format(calculateTotal() * (1 + (TAX / 100)));
+
+
+  console.log(msg);
+}
 
 // ----- HELPERS ----- //
 
@@ -120,7 +161,7 @@ function removeItem(idx) {
 // returns -> Number
 function calculateTotal() {
   let total = 0;
-  for (i = 0; i < cart.length; i++) {
+  for (let i = 0; i < cart.length; i++) {
     total += cart[i].price * cart[i].quantity;
   }
   return total;
@@ -133,5 +174,7 @@ var dollarizer = new Intl.NumberFormat('en-US', {
 });
 
 // Initial call on page load
-populateInventory();
-populatePrices();
+updateInventory();
+updatePrices();
+updateCount();
+updateButton();
