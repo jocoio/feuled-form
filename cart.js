@@ -65,7 +65,7 @@ function updateInventory() {
       // Name
       tHTML += "<td><h2>" + itm.name + "</h2><div class='opac_md'>" + itm.id + "</div></td>";
       // Price
-      tHTML += "<td><h2>" + dollarizer.format(itm.price) + "</h2></td>";
+      tHTML += "<td><h2>$" + numFormatter.format(itm.price) + "</h2></td>";
       // Quantity
       tHTML += "<td>";
       tHTML += "<input id='quan_"+ i + "' type='number' min='1' value=" + itm.quantity + "></input>";
@@ -87,9 +87,9 @@ function updateInventory() {
 // carrArr (Array): array containing a user's cart items
 function updatePrices() {
   let sub = calculateTotal();
-  document.getElementById("sub").innerHTML = dollarizer.format(sub);
-  document.getElementById("tax").innerHTML = dollarizer.format(TAX);
-  document.getElementById("total").innerHTML = dollarizer.format(sub * (1 + TAX / 100));
+  document.getElementById("sub").innerHTML = "$" + numFormatter.format(sub);
+  document.getElementById("tax").innerHTML = "$" + numFormatter.format(TAX);
+  document.getElementById("total").innerHTML = "$" + numFormatter.format(sub * (1 + TAX / 100));
 }
 
 // updates count in nav bar to reflect number of items
@@ -108,10 +108,24 @@ function updateButton() {
 
 // Updates an item's quantity
 // idx (Number): index of the item in the cart
-// TODO: Sanity checking for anything less than 1
 function updateQuan(idx) {
-  cart[idx].quantity = document.getElementById('quan_' + idx).value;
-  updatePrices();
+  let newQuan = parseInt(document.getElementById('quan_' + idx).value);
+
+  console.log(newQuan);
+
+  if (newQuan < 1) {
+    alert("New quantity must be 1 or more");
+    document.getElementById('quan_' + idx).value = cart[idx].quantity;
+  }
+  else if (!Number.isInteger(newQuan)) {
+    alert("New quantity must be an integer (no decimals)");
+    document.getElementById('quan_' + idx).value = cart[idx].quantity;
+  }
+  else {
+    cart[idx].quantity = newQuan;
+    updatePrices();
+    document.getElementById('quan_' + idx).value = newQuan;
+  }
 }
 
 // Removes an item from user's cart
@@ -134,7 +148,7 @@ function submitCheckout() {
   for (let i = 0; i < cart.length; i++) {
     msg += cart[i].name + " x" + cart[i].quantity;
     msg += " ..... ";
-    msg += dollarizer.format(cart[i].price * cart[i].quantity);
+    msg += "$" + numFormatter.format(cart[i].price * cart[i].quantity);
     msg += "\n"
   }
 
@@ -148,7 +162,7 @@ function submitCheckout() {
     msg += "\n\n"
   }
 
-  msg += "Total: " + dollarizer.format(calculateTotal() * (1 + (TAX / 100)));
+  msg += "Total after tax: $" + numFormatter.format(calculateTotal() * (1 + (TAX / 100)));
 
 
   console.log(msg);
@@ -167,11 +181,8 @@ function calculateTotal() {
   return total;
 }
 
-// Number formatter to show prices in US format
-var dollarizer = new Intl.NumberFormat('en-US', {
-  style: 'currency',
-  currency: 'USD',
-});
+// Number formatter to show prices in no decimal format
+var  numFormatter = new Intl.NumberFormat();
 
 // Initial call on page load
 updateInventory();

@@ -13,6 +13,10 @@ body {
   background-color: #1B1B1B;
 }
 
+p {
+  cursor: pointer;
+}
+
 input, textarea {
   padding: 15px;
   background-color: #000000;
@@ -122,6 +126,8 @@ input[type=number] {
 /* ----- Cart ----- */ 
 
 #cart {
+  max-width: 1440px;
+  margin: 0 auto;
   padding: 73px 46px;
 }
 
@@ -132,13 +138,14 @@ input[type=number] {
 
 /* ----- Table ----- */
 
+/* cart empty */
 #inventory > div {
   text-align: center;
   padding: 50px;
 }
 
 #inventory {
-  padding: 72px 0px;
+  padding: 52px 0px;
 }
 
 #inventory th {
@@ -170,7 +177,7 @@ input[type=number] {
 
 #inventory input {
   min-width: 50px;
-  max-width: 75px;
+  max-width: 60px;
   text-align: center;
 }
 
@@ -188,7 +195,6 @@ input[type=number] {
   display:inline-block;
   margin-left: 10px;
   padding: 10px 0;
-  cursor: pointer;
 }
 
 .close {
@@ -204,16 +210,18 @@ input[type=number] {
 }
 
 #footer > div {
-  flex: 1;
   min-width: 250px;
+  padding-bottom: 35px;
+  flex: 1;
 }
 
-#footer > div:nth-child(2) {
-  padding: 0px 30px;
-}
-
+/* Margin on first two footer sections' titles */
 #comments > div:first-child, #delivery > div:first-child {
   margin-bottom: 15px;
+}
+
+#comments {
+  max-width: 418px;
 }
 
 #comments > textarea {
@@ -221,8 +229,17 @@ input[type=number] {
   height: 200px;
 }
 
-#checkout {
-  margin: 45px 0 20px;
+#delivery {
+  max-width: 364px;
+  padding-left: 30px;
+  padding-right: 30px;
+}
+
+#bill {
+  max-width: 311px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
 #prices tr:last-child {
@@ -235,5 +252,45 @@ input[type=number] {
 
 #prices tr > td:last-child {
   text-align: right;
+}
+
+#checkout {
+  margin: 45px 0 20px;
+  width: fit-content;
+}
+
+
+/* mobile stylings */ 
+@media (max-width: 540px) {
+
+  #cart {
+    padding: 50px 25px;
+  }
+
+  /* product image */
+  #inventory tr > td:first-child > img {
+    height: 50px;
+  }
+
+  #inventory tr > td:nth-child(3) > *, #inventory tr > td:nth-child(4) > *{
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    text-align: center;
+  }
+
+  #footer {
+    justify-content: center;
+  }
+
+  #comments, #delivery {
+    padding-left: 0;
+    padding-right: 0;
+    max-width: 100%;
+  }
+
+  #bill {
+    margin-top: 50px;
+  }
 }
 
