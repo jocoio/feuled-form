@@ -278,6 +278,10 @@ input[type=number] {
   align-items: center;
 }
 
+#prices {
+  border-spacing: 0;
+}
+
 /* Last row border radius */
 #prices tr:last-child td:first-child {
   border-top-left-radius: 6px;
