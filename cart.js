@@ -138,6 +138,7 @@ function removeItem(idx) {
 
 // Prints a text version of the user's cart to the console
 function submitCheckout() {
+
   let msg = "";
 
   msg += "Cart:";
@@ -162,7 +163,12 @@ function submitCheckout() {
 
   msg += "Total after tax: $" + numFormatter.format(calculateTotal() * (1 + (TAX / 100)));
 
+  msg += "\n\n\n";
+  msg += "Have a good day!";
+
   console.log(msg);
+  document.getElementById("cart").innerHTML = "<h1>Thank you for your purchase! Check your email (the console) for your receipt.</h1>"
+
 }
 
 // ----- HELPERS ----- //
