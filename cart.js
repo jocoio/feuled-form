@@ -61,7 +61,7 @@ function updateInventory() {
       let itm = cart[i];
       tHTML += "<tr>";
       // Image
-      tHTML += "<td><img src='" + window.location.href + "/assets/" + itm.id + ".png'/></td>";
+      tHTML += "<td><img src='" + basePath() + "/assets/" + itm.id + ".png'/></td>";
       // Name
       tHTML += "<td><h2>" + itm.name + "</h2><div class='opac_md'>" + itm.id + "</div></td>";
       // Price
@@ -72,7 +72,7 @@ function updateInventory() {
       tHTML += "<p class='update' onclick='updateQuan(" + i + ")'>Update</p>";
       tHTML += "</td>";
       // Remove
-      tHTML += "<td><img src='" + window.location.href + "/assets/icons/x.svg' class='close' onclick='removeItem(" + i + ")'/></td>";
+      tHTML += "<td><img src='" + basePath() + "/assets/icons/x.svg' class='close' onclick='removeItem(" + i + ")'/></td>";
       tHTML += "</tr>";
     }
 
@@ -111,8 +111,6 @@ function updateButton() {
 function updateQuan(idx) {
   let newQuan = parseInt(document.getElementById('quan_' + idx).value);
 
-  console.log(newQuan);
-
   if (newQuan < 1) {
     alert("New quantity must be 1 or more");
     document.getElementById('quan_' + idx).value = cart[idx].quantity;
@@ -130,7 +128,6 @@ function updateQuan(idx) {
 
 // Removes an item from user's cart
 // idx (Number): index of the item in the cart
-// TODO: An 'are you sure' popup?
 function removeItem(idx) {
   cart.splice(idx, 1);
   updateInventory();
@@ -139,6 +136,7 @@ function removeItem(idx) {
   updateButton();
 }
 
+// Prints a text version of the user's cart to the console
 function submitCheckout() {
   let msg = "";
 
@@ -164,7 +162,6 @@ function submitCheckout() {
 
   msg += "Total after tax: $" + numFormatter.format(calculateTotal() * (1 + (TAX / 100)));
 
-
   console.log(msg);
 }
 
@@ -181,11 +178,20 @@ function calculateTotal() {
   return total;
 }
 
+// Gets the base URL for directing to assets
+// returns -> String
+function basePath() {
+  return window.location.href.replace(/[^/]*$/, '')
+}
+
 // Number formatter to show prices in no decimal format
-var  numFormatter = new Intl.NumberFormat();
+const numFormatter = new Intl.NumberFormat();
 
 // Initial call on page load
-updateInventory();
-updatePrices();
-updateCount();
-updateButton();
+window.onload = () => {
+  updateInventory();
+  updatePrices();
+  updateCount();
+  updateButton();
+}
+

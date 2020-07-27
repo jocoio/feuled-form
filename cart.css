@@ -1,4 +1,4 @@
-/* ----- RESETTING ----- */
+/* ----------- RESETTING ------------ */
 
 * {
   margin: 0;
@@ -6,11 +6,21 @@
 }
 
 
+/* ---------- COLORS ---------- */ 
+
+:root {
+  --BLACK: #000000;
+  --DARK-GREY: #1B1B1B;
+  --WHITE: #FFFFFF;
+  --RED: #AE0000;
+}
+
+
 /* ----------- COMMON ELEMENTS ---------- */
 
 body {
-  color: #FFFFFF;
-  background-color: #1B1B1B;
+  color: var(--WHITE);
+  background-color: var(--DARK-GREY);
 }
 
 p {
@@ -19,10 +29,16 @@ p {
 
 input, textarea {
   padding: 15px;
-  background-color: #000000;
-  color: #FFFFFF;
+  background-color: var(--BLACK);
+  color: var(--WHITE);
   border: none;
   border-radius: 6px;
+  transition: box-shadow 150ms;
+}
+
+/* Hover glow */
+input:hover, textarea:hover, .btn_pri:hover {
+  box-shadow: 0 0 10px rgba(255, 255, 255, .5);
 }
 
 table {
@@ -30,7 +46,6 @@ table {
 }
 
 /* Remover spinner on number inputs */ 
-
 /* Chrome, Safari, Edge, Opera */
 input::-webkit-outer-spin-button,
 input::-webkit-inner-spin-button {
@@ -51,17 +66,13 @@ input[type=number] {
   border-radius: 6px;
   font-size: 18px;
   font-weight: 700;
-  background-color: #AE0000;
-  color: #FFFFFF;
+  background-color: var(--RED);
+  color: var(--WHITE);
 }
 
 .btn_pri:disabled {
   opacity: 0.4;
   cursor: not-allowed
-}
-
-.bg_black {
-  background-color: #000000;
 }
 
 .opac_md {
@@ -77,12 +88,13 @@ input[type=number] {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  background-color: #AE0000;
+  background-color: var(--RED);
 }
 
 #logo {
   display: flex;
   cursor: pointer;
+  text-decoration: none;
 }
 
 #logo > h3 {
@@ -105,8 +117,8 @@ input[type=number] {
   margin-left: 5px;
   padding: 3px 7px;
   border-radius: 30px;
-  background-color: #FFFFFF;
-  color: #000000;
+  background-color: var(--WHITE);
+  color: var(--BLACK);
   font-weight: 700;
 }
 
@@ -121,6 +133,7 @@ input[type=number] {
 #crumbs {
   padding: 16px 14px;
   border-radius: 6px;
+  background-color: var(--BLACK);
 }
 
 #cart {
@@ -191,10 +204,10 @@ input[type=number] {
 
 /* reverse colors on every other row & black bg for empty */
 #inventory tr:nth-child(odd), #inventory > div {
-  background-color: #000000;
+  background-color:var(--BLACK);
 }
-#inventory input:nth-child(odd) {
-  background-color: #1B1B1B;
+#inventory tr:nth-child(odd) input{
+  background-color: var(--DARK-GREY);
 }
 
 #inventory input {
